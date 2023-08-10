@@ -1,100 +1,158 @@
 <template>
-  <div class="container">
-    <div class="row justify-content-center">
-      <img class="big-logo login-logo" src="~/assets/img/icons/logo.png" alt="">
+  <div class="login-wrapper d-flex align-items-center justify-content-center text-center">
+    <!-- Background Shape-->
+    <div class="background-shape" />
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-sm-9 col-md-7 col-lg-6 col-xl-5">
+          <img class="big-logo login-logo" src="~/assets/img/icons/logo.png" alt="karjico">
+          <!-- Register Form-->
+          <div class="mt-5 px-4">
+            <div class="row">
+              <div class="col-12">
+                <div class="card shopCart">
+                  <div class="card user-data-card bg-dark">
+                    <div class="card-body">
+                          <div class="nav nav-tabs card-header-tabs nav-justified mb-5">
+                            <a class="nav-link" href="/register">ثبت نام</a>
+                            <a class="nav-link active" href="/login">ورود</a>
+                          </div>
+                          <form @submit.prevent="validateData">
+                            <div class="btn-charge-div form-group text-start mb-4">
+                              <span class="title-div">نام کاربری</span>
+                              <input v-model.lazy="username" class="form-control mb-3 bg-dar-input" placeholder="نام کاربری خود را وارد کنید">
+                            </div>
+                            <div class="btn-charge-div form-group text-start mb-4">
+                              <span class="title-div">کلمه عبور</span>
+                              <input v-model.lazy="password" class="form-control mb-3 bg-dar-input" placeholder="کلمه عبور خود را وارد کنید">
+                            </div>
+                            <button class="btn btn-warning btn-lg w-100">
+                              ورود
+                            </button>
+                            <a class="link-register btn btn-warning btn-danger btn-lg w-100" href="/remember">کلمه عبور خود را فراموش کرده
+                              ام</a>
+                          </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="register-form rtl mt-5 px-4 direction-rtl">
-      <form @submit.prevent="validateData">
-        <div class="form-group text-start mb-4">
-          <span>نام</span>
-          <label><i class="lni lni-user" /></label>
-          <input v-model.lazy="name" class="form-control" type="text" placeholder="">
+  </div>
+</template>
+<template>
+  <div class="login-wrapper d-flex align-items-center justify-content-center text-center">
+    <!-- Background Shape-->
+    <div class="background-shape" />
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-sm-9 col-md-7 col-lg-6 col-xl-5">
+          <img class="big-logo login-logo" src="~/assets/img/icons/logo.png" alt="karjico">
+          <div class="mt-5 px-4">
+            <div class="row">
+              <div class="col-12">
+                <div class="card shopCart">
+                  <div class="card user-data-card bg-dark">
+                    <div class="card-body">
+                      <div class="nav nav-tabs card-header-tabs nav-justified mb-5">
+                        <a class="nav-link active" href="/register">ثبت نام</a>
+                        <a class="nav-link" href="/login">ورود</a>
+                      </div>
+                      <div class="register-form rtl mt-5 px-4 direction-rtl">
+                        <form @submit.prevent="validateData">
+                          <div class="btn-charge-div form-group text-start mb-4">
+                            <span class="title-div">نام</span>
+                            <input v-model.lazy="name" class="form-control mb-3 bg-dar-input" type="text" placeholder="نام خود را وارد کنید">
+                          </div>
+                          <div class="btn-charge-div form-group text-start mb-4">
+                            <span class="title-div">نام خانوادگی</span>
+                            <input v-model.lazy="last_name" class="form-control mb-3 bg-dar-input" type="text" placeholder="نام خانوادگی خود را وارد کنید">
+                          </div>
+                          <div class="btn-charge-div form-group text-start mb-4">
+                            <span class="title-div">نام کاربری(حروف انگلیسی)</span>
+                            <input
+                              v-model.lazy="username"
+                              class="form-control mb-3 bg-dar-input"
+                              type="text"
+                              placeholder="نام کاربری خود را وارد کنید (حروف انگلیسی)"
+                              pattern="[A-Za-z0-9]+"
+                              @blur="onInputUsername"
+                            >
+                          </div>
+                          <div class="btn-charge-div form-group text-start mb-4" pattern="[a-zA-Z]+">
+                            <span class="title-div">  کد معرف </span>
+                            <span class="text-danger position-absolute">{{ referenceName }}</span>
+                            <input v-model.lazy="reference_code" class="form-control mb-3 bg-dar-input" type="text" placeholder="کد معرف را وارد کنید" @blur="onInput">
+                          </div>
+                          <div class="btn-charge-div form-group text-start mb-4">
+                            <span class="title-div">تلفن همراه</span>
+                            <input
+                              v-model="phone"
+                              class="form-control mb-3 bg-dar-input"
+                              type="number"
+                              placeholder="تفن همراه خود را وارد کنید"
+                              pattern="[0-9]+"
+                            >
+                          </div>
+                          <!-- <div class="btn-charge-div form-group text-start mb-4">
+                            <span class="title-div">ایمیل</span>
+                            <input
+                              v-model="email"
+                              class="form-control mb-3 bg-dar-input"
+                              type="text"
+                              placeholder=""
+                            >
+                          </div> -->
+                          <div class="btn-charge-div form-group text-start mb-4">
+                            <span class="title-div">رمز ورود (حداقل 6 کاراکتر)</span>
+                            <input v-model.lazy="password" class="input-psswd form-control mb-3 bg-dar-input" type="password" placeholder="رمز ورود خود را وارد کنید">
+                          </div>
+                          <div class="btn-charge-div form-group text-start mb-4">
+                            <span class="title-div">تکرار رمز ورود</span>
+                            <input v-model.lazy="repassword" class="input-psswd form-control mb-3 bg-dar-input" type="password" placeholder="رمز ورود خود را مجدد وارد کنید">
+                          </div>
+                          <!-- <div class="btn-charge-div form-group text-start mb-4">
+                            <span class="title-div">باشگاه مشتریان</span>
+                            <select v-model.lazy="plan" class="form-control mb-3 bg-dar-input">
+                              <option value="1" style="color: #000">
+                                باشگاه A
+                              </option>
+                              <option value="2" style="color: #000">
+                                باشگاه B
+                              </option>
+                            </select>
+                          </div>
+                          <div class="btn-charge-div form-group text-start mb-4">
+                            <span class="title-div">کد یکبارمصرف</span>
+                            <input
+                              v-model.lazy="codeVerify"
+                              class="form-control mb-3 bg-dar-input"
+                              type="text"
+                              placeholder=""
+                              pattern="[A-Za-z0-9]+"
+                            >
+                          </div> -->
+<!--                          <div>-->
+<!--                            <div class="title mb-2 checkbox-title">-->
+<!--                              <input ref="rolesSelected" type="checkbox" class="checkbox">تمامی <a href="/auction"> قوانین و مقررات </a> را مطالعه کرده و با شرایط موافق می باشم-->
+<!--                            </div>-->
+<!--                          </div>-->
+                          <button class="btn btn-warning btn-lg w-100" type="submit">
+                            ثبت نام
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="form-group text-start mb-4">
-          <span>نام خانوادگی</span>
-          <label><i class="lni lni-user" /></label>
-          <input v-model.lazy="last_name" class="form-control" type="text" placeholder="">
-        </div>
-        <div class="form-group text-start mb-4">
-          <span>نام کاربری(حروف انگلیسی)</span>
-          <label><i class="lni lni-user" /></label>
-          <input
-            v-model.lazy="username"
-            class="form-control"
-            type="text"
-            placeholder=""
-            pattern="[A-Za-z0-9]+"
-            @blur="onInputUsername"
-          >
-        </div>
-        <div class="form-group text-start mb-4" pattern="[a-zA-Z]+">
-          <span>  کد معرف </span><span style="color: #5cfa5c">{{ referenceName }}</span>
-          <label><i class="lni lni-user" /></label>
-          <input v-model.lazy="reference_code" class="form-control" type="text" placeholder="" @blur="onInput">
-        </div>
-        <div class="form-group text-start mb-4">
-          <span>تلفن همراه</span>
-          <label><i class="lni lni-mobile" /></label>
-          <input
-            v-model="phone"
-            class="form-control"
-            type="number"
-            placeholder=""
-            pattern="[0-9]+"
-          >
-        </div>
-        <div class="form-group text-start mb-4">
-          <span>ایمیل</span>
-          <label><i class="lni lni-envelope" /></label>
-          <input
-            v-model="email"
-            class="form-control"
-            type="text"
-            placeholder=""
-          >
-        </div>
-        <div class="form-group text-start mb-4">
-          <span>رمز ورود (حداقل 6 کاراکتر)</span>
-          <label><i class="lni lni-lock" /></label>
-          <input v-model.lazy="password" class="input-psswd form-control" type="password" placeholder="">
-        </div>
-        <div class="form-group text-start mb-4">
-          <span>تکرار رمز ورود</span>
-          <label><i class="lni lni-lock" /></label>
-          <input v-model.lazy="repassword" class="input-psswd form-control" type="password" placeholder="">
-        </div>
-        <div class="form-group text-start mb-4">
-          <span>باشگاه مشتریان</span>
-          <label><i class="lni lni-grid-alt" /></label>
-          <select v-model.lazy="plan" class="form-control ">
-            <option value="1" style="color: #000">
-              باشگاه A
-            </option>
-            <option value="2" style="color: #000">
-              باشگاه B
-            </option>
-          </select>
-        </div>
-        <div class="form-group text-start mb-4">
-          <span>کد یکبارمصرف</span>
-          <label><i class="lni lni-user" /></label>
-          <input
-            v-model.lazy="codeVerify"
-            class="form-control"
-            type="text"
-            placeholder=""
-            pattern="[A-Za-z0-9]+"
-          >
-        </div>
-<!--        <div>-->
-<!--          <div class="title mb-2 checkbox-title">-->
-<!--            <input ref="rolesSelected" type="checkbox" class="checkbox">تمامی <a href="/auction"> قوانین و مقررات </a> را مطالعه کرده و با شرایط موافق می باشم-->
-<!--          </div>-->
-<!--        </div>-->
-        <button class="btn btn-warning btn-lg w-100" type="submit">
-          ثبت نام
-        </button>
-      </form>
+      </div>
     </div>
   </div>
 </template>
@@ -334,5 +392,71 @@ select:focus {
 select {
   background-color: blue;
   color: white;
+}
+.link-register{
+  color:#fff!important;
+  margin-top:10px ;
+}
+.bg-dark{
+  border-radius: 6px !important;
+}
+
+.nav-link{
+  color: #fff;
+  padding: 0px;
+}
+.nav-link:hover{
+  color: #ffaf00;
+}
+
+.nav-tabs .nav-link.active{
+  background-color: #ffaf00;
+  border: none;
+  border-radius: 100px;
+}
+
+.nav-tabs .nav-link{
+  border-radius: 100px !important;
+}
+
+.link-register i{
+  margin-left: 5px;
+}
+.bg-dar-input {
+    border: none !important;
+    border-radius: 26px !important;
+    text-align: center !important;
+}
+.btn-charge-div .title-div{
+  left: 76%;
+  width: fit-content;
+  right: 0;
+}
+.card-header-tabs{
+  background-color: #8d8d8d;
+  padding: 5px;
+  border-radius: 100px !important;
+}
+
+.register-form span{
+  top: 50px;
+  left: 5%;
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .container {
+    max-width: 600px;
+  }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
 }
 </style>

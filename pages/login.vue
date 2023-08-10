@@ -5,26 +5,38 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-12 col-sm-9 col-md-7 col-lg-6 col-xl-5">
-          <img class="big-logo login-logo" src="~/assets/img/icons/logo.png" alt="">
+          <img class="big-logo login-logo" src="~/assets/img/icons/logo.png" alt="karjico">
           <!-- Register Form-->
-          <div class="register-form mt-5 px-4">
-            <form @submit.prevent="validateData">
-              <div class="form-group text-start mb-4">
-                <span>نام کاربری</span>
-                <label><i class="lni lni-user" /></label>
-                <input v-model.lazy="username" class="form-control" placeholder="">
+          <div class="mt-5 px-4">
+            <div class="row">
+              <div class="col-12">
+                <div class="card shopCart">
+                  <div class="card user-data-card bg-dark">
+                    <div class="card-body">
+                          <div class="nav nav-tabs card-header-tabs nav-justified mb-5">
+                            <a class="nav-link" href="/register">ثبت نام</a>
+                            <a class="nav-link active" href="/login">ورود</a>
+                          </div>
+                          <form @submit.prevent="validateData">
+                            <div class="btn-charge-div form-group text-start mb-4">
+                              <span class="title-div">نام کاربری</span>
+                              <input v-model.lazy="username" class="form-control mb-3 bg-dar-input" placeholder="نام کاربری خود را وارد کنید">
+                            </div>
+                            <div class="btn-charge-div form-group text-start mb-4">
+                              <span class="title-div">کلمه عبور</span>
+                              <input v-model.lazy="password" class="form-control mb-3 bg-dar-input" placeholder="کلمه عبور خود را وارد کنید">
+                            </div>
+                            <button class="btn btn-warning btn-lg w-100">
+                              ورود
+                            </button>
+                            <a class="link-register btn btn-warning btn-danger btn-lg w-100" href="/remember">کلمه عبور خود را فراموش کرده
+                              ام</a>
+                          </form>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="form-group text-start mb-4">
-                <span>کلمه عبور</span>
-                <label><i class="lni lni-key" /></label>
-                <input v-model.lazy="password" class="form-control" placeholder="">
-              </div>
-              <button class="btn btn-warning btn-lg w-100">
-                ورود
-              </button>
-              <a class="link-register btn btn-warning btn-danger btn-lg w-100" href="/register">ثبت نام<i class="lni lni-user" /></a>
-              <a class="link-register btn  btn-link  btn-lg w-100" href="/remember">کلمه عبور خود را فراموش کرده ام<i class="lni lni-user" /></a>
-            </form>
+            </div>
           </div>
         </div>
       </div>
@@ -113,9 +125,49 @@ export default {
 .link-register{
   color:#fff!important;
   margin-top:10px ;
-
 }
+.bg-dark{
+  border-radius: 6px !important;
+}
+
+.nav-link{
+  color: #fff;
+  padding: 0px;
+}
+.nav-link:hover{
+  color: #ffaf00;
+}
+
+.nav-tabs .nav-link.active{
+  background-color: #ffaf00;
+  border: none;
+  border-radius: 100px;
+}
+
+.nav-tabs .nav-link{
+  border-radius: 100px !important;
+}
+
 .link-register i{
   margin-left: 5px;
+}
+.bg-dar-input {
+    border: none !important;
+    border-radius: 26px !important;
+    text-align: center !important;
+}
+.btn-charge-div .title-div{
+  left: 84%;
+  right: 0;
+}
+.card-header-tabs{
+  background-color: #8d8d8d;
+  padding: 5px;
+  border-radius: 100px !important;
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .container {
+    max-width: 600px;
+  }
 }
 </style>
