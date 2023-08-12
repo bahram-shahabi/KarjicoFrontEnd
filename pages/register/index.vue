@@ -1,68 +1,41 @@
 <template>
   <div class="login-wrapper d-flex align-items-center justify-content-center text-center">
     <!-- Background Shape-->
-    <div class="background-shape" />
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-12 col-sm-9 col-md-7 col-lg-6 col-xl-5">
           <img class="big-logo login-logo" src="~/assets/img/icons/logo.png" alt="karjico">
-          <!-- Register Form-->
           <div class="mt-5 px-4">
             <div class="row">
               <div class="col-12">
                 <div class="card shopCart">
                   <div class="card user-data-card bg-dark">
                     <div class="card-body">
-                          <div class="nav nav-tabs card-header-tabs nav-justified mb-5">
-                            <a class="nav-link" href="/register">ثبت نام</a>
-                            <a class="nav-link active" href="/login">ورود</a>
+                      <div class="user-icon ">
+                          <div class="text-white">
+                            <img src="~/assets/img/icons/person-fill-add.svg" alt="">
                           </div>
-                          <form @submit.prevent="validateData">
-                            <div class="btn-charge-div form-group text-start mb-4">
-                              <span class="title-div">نام کاربری</span>
-                              <input v-model.lazy="username" class="form-control mb-3 bg-dar-input" placeholder="نام کاربری خود را وارد کنید">
-                            </div>
-                            <div class="btn-charge-div form-group text-start mb-4">
-                              <span class="title-div">کلمه عبور</span>
-                              <input v-model.lazy="password" class="form-control mb-3 bg-dar-input" placeholder="کلمه عبور خود را وارد کنید">
-                            </div>
-                            <button class="btn btn-warning btn-lg w-100">
-                              ورود
-                            </button>
-                            <a class="link-register btn btn-warning btn-danger btn-lg w-100" href="/remember">کلمه عبور خود را فراموش کرده
-                              ام</a>
-                          </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-<template>
-  <div class="login-wrapper d-flex align-items-center justify-content-center text-center">
-    <!-- Background Shape-->
-    <div class="background-shape" />
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12 col-sm-9 col-md-7 col-lg-6 col-xl-5">
-          <img class="big-logo login-logo" src="~/assets/img/icons/logo.png" alt="karjico">
-          <div class="mt-5 px-4">
-            <div class="row">
-              <div class="col-12">
-                <div class="card shopCart">
-                  <div class="card user-data-card bg-dark">
-                    <div class="card-body">
-                      <div class="nav nav-tabs card-header-tabs nav-justified mb-5">
+                          <p>عضویت در کارجیکو</p>
+                        </div>
+                      <div class="nav nav-tabs card-header-tabs nav-justified mb-3">
                         <a class="nav-link active" href="/register">ثبت نام</a>
                         <a class="nav-link" href="/login">ورود</a>
                       </div>
-                      <div class="register-form rtl mt-5 px-4 direction-rtl">
+                      <div class="register-form rtl direction-rtl">
                         <form @submit.prevent="validateData">
+                          <div class="btn-charge-div form-group text-start mb-4">
+                            <span class="title-div">تلفن همراه</span>
+                            <div class="user">
+                              <i class="lni lni-phone text-white"></i>
+                            </div>
+                            <input
+                              v-model="phone"
+                              class="form-control mb-3 bg-dar-input"
+                              type="number"
+                              placeholder="تفن همراه خود را وارد کنید"
+                              pattern="[0-9]+"
+                            >
+                          </div>
                           <div class="btn-charge-div form-group text-start mb-4">
                             <span class="title-div">نام</span>
                             <input v-model.lazy="name" class="form-control mb-3 bg-dar-input" type="text" placeholder="نام خود را وارد کنید">
@@ -71,7 +44,7 @@
                             <span class="title-div">نام خانوادگی</span>
                             <input v-model.lazy="last_name" class="form-control mb-3 bg-dar-input" type="text" placeholder="نام خانوادگی خود را وارد کنید">
                           </div>
-                          <div class="btn-charge-div form-group text-start mb-4">
+                          <!-- <div class="btn-charge-div form-group text-start mb-4">
                             <span class="title-div">نام کاربری(حروف انگلیسی)</span>
                             <input
                               v-model.lazy="username"
@@ -81,22 +54,7 @@
                               pattern="[A-Za-z0-9]+"
                               @blur="onInputUsername"
                             >
-                          </div>
-                          <div class="btn-charge-div form-group text-start mb-4" pattern="[a-zA-Z]+">
-                            <span class="title-div">  کد معرف </span>
-                            <span class="text-danger position-absolute">{{ referenceName }}</span>
-                            <input v-model.lazy="reference_code" class="form-control mb-3 bg-dar-input" type="text" placeholder="کد معرف را وارد کنید" @blur="onInput">
-                          </div>
-                          <div class="btn-charge-div form-group text-start mb-4">
-                            <span class="title-div">تلفن همراه</span>
-                            <input
-                              v-model="phone"
-                              class="form-control mb-3 bg-dar-input"
-                              type="number"
-                              placeholder="تفن همراه خود را وارد کنید"
-                              pattern="[0-9]+"
-                            >
-                          </div>
+                          </div> -->
                           <!-- <div class="btn-charge-div form-group text-start mb-4">
                             <span class="title-div">ایمیل</span>
                             <input
@@ -108,11 +66,30 @@
                           </div> -->
                           <div class="btn-charge-div form-group text-start mb-4">
                             <span class="title-div">رمز ورود (حداقل 6 کاراکتر)</span>
+                            <div class="user">
+                                <i class="lni lni-key"></i>
+                              </div>
                             <input v-model.lazy="password" class="input-psswd form-control mb-3 bg-dar-input" type="password" placeholder="رمز ورود خود را وارد کنید">
+                            <img id="eye" @click="toggleEye" src="~/assets/img/icons/eye-fill.svg" alt="">
                           </div>
                           <div class="btn-charge-div form-group text-start mb-4">
                             <span class="title-div">تکرار رمز ورود</span>
+                            <div class="user">
+                                <i class="lni lni-key"></i>
+                              </div>
                             <input v-model.lazy="repassword" class="input-psswd form-control mb-3 bg-dar-input" type="password" placeholder="رمز ورود خود را مجدد وارد کنید">
+                            <img id="eye" @click="toggleEye" src="~/assets/img/icons/eye-fill.svg" alt="">
+                          </div>
+                          <div class="btn-charge-div mb-4 form-group text-start" pattern="[a-zA-Z]+">
+                            <span class="title-div"> کد معرف <i class="lni lni-question-circle text-success"></i></span>
+                            <div class="user">
+                                <img src="~/assets/img/icons/person-fill.svg" alt="">
+                              </div>
+                            <span class="text-danger position-absolute">{{ referenceName }}</span>
+                            <input v-model.lazy="reference_code" class="form-control bg-dar-input" type="text" placeholder="کد معرف را وارد کنید" @blur="onInput">
+                            <div class="row mb-4 pr-3">
+                              <p class="fit"> کد معرف ندارید ؟ </p><span class="text-warning fit"> معرف انتخاب  کنید <i class="lni font-15 lni-question-circle text-success"></i></span>
+                            </div>
                           </div>
                           <!-- <div class="btn-charge-div form-group text-start mb-4">
                             <span class="title-div">باشگاه مشتریان</span>
@@ -140,7 +117,7 @@
 <!--                              <input ref="rolesSelected" type="checkbox" class="checkbox">تمامی <a href="/auction"> قوانین و مقررات </a> را مطالعه کرده و با شرایط موافق می باشم-->
 <!--                            </div>-->
 <!--                          </div>-->
-                          <button class="btn btn-warning btn-lg w-100" type="submit">
+                          <button class="btn btn-warning border-0 bg-warning mt-4 btn-lg w-100" type="submit">
                             ثبت نام
                           </button>
                         </form>
@@ -382,8 +359,49 @@ export default {
 }
 </script>
 <style>
+.login-logo{
+  width: 180px !important;
+}
+.lni-phone{
+  transform: rotate(260deg);
+}
+.user-data-card .card-body {
+    padding: 0.75rem;
+}
+.user-icon img{
+  width: 50px;
+}
+.user-icon{
+  margin-bottom: 35px;
+}
+#eye{
+  position: absolute;
+  bottom: 25%;
+  left: 5%;
+}
+.login-wrapper{
+  background: linear-gradient(to left, #000000, #303030) !important;
+}
 .checkbox-title{
   color: #fff!important;
+}
+.font-15{
+  font-size: 15px;
+}
+.user img{
+  position: absolute;
+  z-index: 1;
+  left: 88%;
+  bottom: 27%;
+  width: 20px;
+}
+.user i{
+  color: #fff;
+  position: absolute;
+  z-index: 1;
+  left: 88%;
+  bottom: 27%;
+  width: 20px;
 }
 select:focus {
   background-color: blue;
@@ -408,7 +426,11 @@ select {
 .nav-link:hover{
   color: #ffaf00;
 }
-
+.fit{
+  max-width: fit-content;
+  padding: 0;
+  margin: 0;
+}
 .nav-tabs .nav-link.active{
   background-color: #ffaf00;
   border: none;
@@ -428,7 +450,7 @@ select {
     text-align: center !important;
 }
 .btn-charge-div .title-div{
-  left: 76%;
+  left: 70%;
   width: fit-content;
   right: 0;
 }
@@ -441,6 +463,12 @@ select {
 .register-form span{
   top: 50px;
   left: 5%;
+}
+.btn-charge-div {
+  height: 42px;
+}
+.card{
+  border-radius: 25px !important;
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
